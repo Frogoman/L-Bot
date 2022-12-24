@@ -40,7 +40,6 @@ async def on_message(message):
     if message.content.startswith('!test'):
         if "frry" in [role.name.lower() for role in message.author.roles]:
             await message.channel.send("Yes")
-            print("Yes")
         else:
             await message.channel.send("No")
             print(getLocalTime(), "       ", message.author.name , " Has tried to access the command '!test'")
