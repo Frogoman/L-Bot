@@ -1,6 +1,7 @@
 {
     "cooldown" : 5,
     "status" : "",
+    "mod_roles" : ["Space Janyator", "Space Cat Nya"],
     "triggers" : {
         "squ" : [
             "You are making me jealous...",

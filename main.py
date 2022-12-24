@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 # Global variables
 cooldown = 0
 status = ""
+mod_roles = ""
 triggers = {}
 last_message_send_time = round(time.time() * 1000)
 
@@ -16,6 +17,7 @@ with open('config.json', 'r') as file:
     config = json.loads(file.read())
     cooldown = config["cooldown"] * 1000
     status = config["status"]
+    mod_roles = config["mod_roles"]
     triggers = config["triggers"]
 
 # Load token from .env
@@ -38,10 +40,11 @@ async def on_message(message):
         return
 
     if message.content.startswith('!test'):
-        if "furry" in [role.name.lower() for role in message.author.roles]:
-            await message.channel.send(f'Hello {message.author.name}')
-        else:
-            print(getLocalTime(), "       ", message.author.name , " Has tried to access the command '!test'")
+        for modRole in mod_roles:
+            if modRole.lower() in [role.name.lower() for role in message.author.roles]:
+                await message.channel.send(f'Hello {message.author.name}')
+            else:
+                print(getLocalTime(), "       ", message.author.name , " Has tried to access the command '!test'")
 
     current_time = round(time.time() * 1000)
     if current_time - last_message_send_time > cooldown:
