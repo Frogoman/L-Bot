@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 
 # Global variables
 cooldown = 0
+status = ""
 triggers = {}
 last_message_send_time = round(time.time() * 1000)
 
@@ -14,6 +15,7 @@ last_message_send_time = round(time.time() * 1000)
 with open('config.json', 'r') as file:
     config = json.loads(file.read())
     cooldown = config["cooldown"] * 1000
+    status = config["status"]
     triggers = config["triggers"]
 
 # Load token from .env
@@ -22,7 +24,7 @@ token = os.getenv('TOKEN')
 
 # Initialize discord client
 intents = discord.Intents().all()
-client = discord.Client(intents=intents)
+client = discord.Client(intents=intents, activity=discord.Game(name=status))
 
 @client.event
 async def on_ready():

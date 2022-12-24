@@ -1,5 +1,6 @@
 {
     "cooldown" : 5,
+    "status" : "",
     "triggers" : {
         "squ" : [
             "You are making me jealous...",
