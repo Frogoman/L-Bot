@@ -28,7 +28,7 @@ client = discord.Client(intents=intents, activity=discord.Game(name=status))
 
 @client.event
 async def on_ready():
-    print("{0.user} is online".format(client))
+    print("{0.user} is online\n".format(client))
 
 @client.event
 async def on_message(message):
@@ -36,6 +36,14 @@ async def on_message(message):
 
     if message.author == client.user:
         return
+
+    if message.content.startswith('!test'):
+        if "frry" in [role.name.lower() for role in message.author.roles]:
+            await message.channel.send("Yes")
+            print("Yes")
+        else:
+            await message.channel.send("No")
+            print(getLocalTime(), "       ", message.author.name , " Has tried to access the command '!test'")
 
     current_time = round(time.time() * 1000)
     if current_time - last_message_send_time > cooldown:
@@ -49,5 +57,8 @@ async def on_message(message):
         if responses is not None:
             await message.channel.send(random.choice(responses))
             last_message_send_time = current_time
+
+def getLocalTime():
+    return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
 client.run(token)
