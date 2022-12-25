@@ -4,6 +4,7 @@ import os
 import random
 import json
 import time
+import logging
 from dotenv import load_dotenv
 
 # Global variables
@@ -25,6 +26,17 @@ with open('config.json', 'r') as file:
 load_dotenv()
 token = os.getenv('TOKEN')
 
+# Set up logger
+logger = logging.getLogger('discord')
+handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
+handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+logger.addHandler(handler)
+
+# logger.info("Test message")
+# logger.critical("Test message")
+# logger.error("Test message")
+# logger.warning("Test message")
+
 # Initialize discord bot
 intents = discord.Intents().all()
 bot = commands.Bot(intents=intents, command_prefix='|', activity=discord.Game(name=status))
@@ -39,14 +51,7 @@ async def on_message(message):
 
     if message.author == bot.user:
         return
-
-    if message.content.startswith('!test'):
-        for modRole in mod_roles:
-            if modRole.lower() in [role.name.lower() for role in message.author.roles]:
-                await message.channel.send(f'Hello {message.author.name}')
-            else:
-                print(getLocalTime(), "       ", message.author.name , " Has tried to access the command '!test'")
-
+  
     current_time = round(time.time() * 1000)
     if current_time - last_message_send_time > cooldown:
         responses = None;
@@ -68,9 +73,8 @@ async def test(ctx):
         if modRole.lower() in [role.name.lower() for role in ctx.message.author.roles]:
             await ctx.send(f'Hello {ctx.message.author.name}')
             return
-            
-    print(getLocalTime(), "       ", ctx.message.author.name , " Has tried to access the command '!test'")
 
+    logger.info("%s Has tried to access the 'test' command without the appropriate roles", ctx.message.author.name)
 
 def getLocalTime():
     return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
