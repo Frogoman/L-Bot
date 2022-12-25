@@ -28,7 +28,7 @@ token = os.getenv('TOKEN')
 
 # Set up logger
 logger = logging.getLogger('discord')
-handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
+handler = logging.FileHandler(filename='l_bot.log', encoding='utf-8', mode='w')
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
 
