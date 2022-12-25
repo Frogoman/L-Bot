@@ -4,6 +4,7 @@ import os
 import random
 import json
 import time
+import logging
 from dotenv import load_dotenv
 
 # Global variables
@@ -68,7 +69,7 @@ async def test(ctx):
         if modRole.lower() in [role.name.lower() for role in ctx.message.author.roles]:
             await ctx.send(f'Hello {ctx.message.author.name}')
             return
-            
+
     print(getLocalTime(), "       ", ctx.message.author.name , " Has tried to access the command '!test'")
 
 
