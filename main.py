@@ -1,4 +1,5 @@
 import discord
+from discord.ext import commands
 import os
 import random
 import json
@@ -24,19 +25,19 @@ with open('config.json', 'r') as file:
 load_dotenv()
 token = os.getenv('TOKEN')
 
-# Initialize discord client
+# Initialize discord bot
 intents = discord.Intents().all()
-client = discord.Client(intents=intents, activity=discord.Game(name=status))
+bot = commands.Bot(intents=intents, command_prefix='|', activity=discord.Game(name=status))
 
-@client.event
+@bot.event
 async def on_ready():
-    print("{0.user} is online\n".format(client))
+    print("{0.user} is online\n".format(bot))
 
-@client.event
+@bot.event
 async def on_message(message):
     global last_message_send_time
 
-    if message.author == client.user:
+    if message.author == bot.user:
         return
 
     if message.content.startswith('!test'):
@@ -59,7 +60,19 @@ async def on_message(message):
             await message.channel.send(random.choice(responses))
             last_message_send_time = current_time
 
+    await bot.process_commands(message)
+
+@bot.command()
+async def test(ctx):
+    for modRole in mod_roles:
+        if modRole.lower() in [role.name.lower() for role in ctx.message.author.roles]:
+            await ctx.send(f'Hello {ctx.message.author.name}')
+            return
+            
+    print(getLocalTime(), "       ", ctx.message.author.name , " Has tried to access the command '!test'")
+
+
 def getLocalTime():
     return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
-client.run(token)
+bot.run(token)
