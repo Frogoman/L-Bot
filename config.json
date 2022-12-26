@@ -3,7 +3,7 @@
     "status" : "",
     "mod_roles" : ["Space Janyator", "Space Cat Nya"],
     "triggers" : {
-        "squ" : [
+        "Squ" : [
             "You are making me jealous...",
             "Did you know that she is a cat?",
             "Why are you talking to her?",
@@ -19,7 +19,7 @@
             "She will eat your face!"
         ],
 
-        "squchan" : [
+        "SquChan" : [
             "You are making me jealous...",
             "Did you know that she is a cat?",
             "Why are you talking to her?",
@@ -35,12 +35,12 @@
             "She will eat your face!"
         ],
 
-        "coffee" : [
+        "Coffee" : [
             "Give me",
             "I want it"
         ],
 
-        "l" : [
+        "L" : [
             "Music starto....",
             "I dont understand",
             "I don't like the moon. It's lonely.",
