@@ -1,9 +1,12 @@
 {
-    "cooldown" : 5,
-    "status" : "",
-    "mod_roles" : ["Space Janyator", "Space Cat Nya"],
-    "triggers" : {
-        "Squ" : [
+    "cooldown": 5,
+    "status": "",
+    "mod_roles": [
+        "Space Janyator",
+        "Space Cat Nya"
+    ],
+    "triggers": {
+        "Squ": [
             "You are making me jealous...",
             "Did you know that she is a cat?",
             "Why are you talking to her?",
@@ -18,8 +21,7 @@
             "I don't like that look in your eyes! Why do you need her?",
             "She will eat your face!"
         ],
-
-        "SquChan" : [
+        "SquChan": [
             "You are making me jealous...",
             "Did you know that she is a cat?",
             "Why are you talking to her?",
@@ -34,13 +36,11 @@
             "I don't like that look in your eyes! Why do you need her?",
             "She will eat your face!"
         ],
-
-        "Coffee" : [
+        "Coffee": [
             "Give me",
             "I want it"
         ],
-
-        "L" : [
+        "L": [
             "Music starto....",
             "I dont understand",
             "I don't like the moon. It's lonely.",
