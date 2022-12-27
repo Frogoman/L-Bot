@@ -106,11 +106,11 @@ class TriggerSelectModify(View):
 
         embed.add_field(name = f"Phrases for {select.values[0]}", value = phraseString)
 
-        view = PhraseSelect(select.values[0])
+        view = PhraseSelectModify(select.values[0])
 
         await interaction.response.edit_message(embed = embed, view = view)
 
-class PhraseSelect(View):
+class PhraseSelectModify(View):
     selectArray = []
     select = []
     trigger = ""
